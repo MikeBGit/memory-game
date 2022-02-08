@@ -17,7 +17,7 @@ let roboSet;
 let imgCounter = 0;
 let randomImgId;
 let idsUSed = [];
-let arrayOfUrls = [];
+let arrayOfNumbers = [];
 
 function rng1_4(){
   return Math.floor(Math.random() * 4) + 1;
@@ -99,7 +99,7 @@ function showTable() {
   // make an array of <spans> with URL + IDs
   let object = {}
 
-  function makeArrayToShuffle(){
+  function makeObjectToShuffle(){
     totalCards = rows * columns;
     for(i=0;i<totalCards;i++){
       url = generateRandomImageURL();
@@ -110,9 +110,7 @@ function showTable() {
           "url": url
         }
       }
-      arrayOfUrls.push(`<span id="${randomImgId}_${imgCounter}" style="background-image: url("${url}")"></span>`)
-    }
-    
+    }  
   }
 
   function shuffle(array) {
@@ -128,10 +126,19 @@ function showTable() {
     }
   }
   
-  makeArrayToShuffle();
-  shuffle(arrayOfUrls);
-  console.log(arrayOfUrls);
+  function makeNumberArray(){
+    totalCards = rows * columns;
+    for(i=0;i<totalCards;i++){
+      arrayOfNumbers.push(i)
+    }
+  }
+  makeNumberArray();
+
+  makeObjectToShuffle();
+  shuffle(arrayOfNumbers);
+  console.log(arrayOfNumbers);
   console.log(object);
+  let arrayOfNumberCount = 0;
 
   // Loop that styles and appends each element to the dom to form the table
 
@@ -141,8 +148,9 @@ function showTable() {
       // element creation
       let newSpan = document.createElement("span");
       let spanNumber = document.createTextNode(``);
-      newSpan.style.backgroundImage = `url(${generateRandomImageURL()})`
-      newSpan.id = `${randomImgId}_${imgCounter}`;
+      
+      newSpan.style.backgroundImage = `url(${object[arrayOfNumbers[arrayOfNumberCount]].url})`
+      newSpan.id = `${object[arrayOfNumbers[arrayOfNumberCount]].id}`;
      
       // Span Css
       newSpan.style.display = "inline-block";
@@ -160,6 +168,7 @@ function showTable() {
       newParagraph.appendChild(newSpan);
       container.appendChild(newParagraph);
       myBody.appendChild(container);
+      arrayOfNumberCount++
     }
   }
  
