@@ -147,14 +147,14 @@ function showTable() {
     for (j = 0; j < columns; j++) {
       // element creation
       let newSpan = document.createElement("span");
-      let spanNumber = document.createTextNode(``);
+
       
       newSpan.style.backgroundImage = `url(${object[arrayOfNumbers[arrayOfNumberCount]].url})`
       newSpan.id = `${object[arrayOfNumbers[arrayOfNumberCount]].id}`;
      
       // Span Css
       newSpan.style.display = "inline-block";
-      newSpan.style.minWidth = "140px";
+      newSpan.style.minWidth = "150px";
       newSpan.style.minHeight = "130px";
       newSpan.style.border = "1px solid black";
       newSpan.style.textAlign = "center";
@@ -164,7 +164,7 @@ function showTable() {
       // paragraph css
       newParagraph.style.margin = "0px";
       // Appending section
-      newSpan.appendChild(spanNumber);
+
       newParagraph.appendChild(newSpan);
       container.appendChild(newParagraph);
       myBody.appendChild(container);
