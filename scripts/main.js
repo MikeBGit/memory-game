@@ -1,16 +1,3 @@
-
-// function createCard(){ 
-//     $("main").append(`<div class="card"></div>`)
-// }
-
-
-// function loopToMakeCards(amountOfCards){
-//     for(i=0;i<amountOfCards;i++){
-//         createCard()
-//     }
-// }
-
-// loopToMakeCards(35);
 let roboHash = "https://robohash.org/";
 let roboSize = "?size=140x150";
 let roboSet;
