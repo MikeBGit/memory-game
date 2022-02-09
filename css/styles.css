@@ -20,3 +20,40 @@ body{
     height: 6em;
    
 }
+.homeBackground{
+    background-color: #7092BE;
+    padding-top: 3em;
+}
+.contentBox{
+    max-width: 40%;
+    max-height: 80%;
+    margin: auto;
+    border: 6px solid #880015;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 3em;
+}
+h2, h3{
+    color: white;
+    text-align: center;
+}
+.centerText{
+    text-align: center;
+    padding-top: 0.5em;
+}
+.formMargin{
+    margin-bottom: 0.5em;
+    min-width: 150px;
+    width: 50%;
+    display: inline-block;
+}
+option{
+    text-align: center;
+}
+.playBtn{
+    margin-top: 1em;
+    background-color: #22B14C;
+    height: 3em;
+    min-width: 150px;
+    width:50%
+}

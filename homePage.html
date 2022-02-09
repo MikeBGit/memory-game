@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Home Page</title>
+</head>
+<body class="homeBackground">
+    <main>
+        <div class="contentBox">
+
+            <h2>Stuff and Things <br><br> ---------- </h2>
+
+            <h3>Difficulty</h3>
+            <form class="centerText" action="/main.js">
+                <select name="difficulty" id="difficulty" class="formMargin">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                    <option value="haveFunGuessing">Have Fun Guessing</option>
+                </select>
+                <br>
+                <h3>Game Size</h3>
+                <select name="size" id="size" class="formMargin">
+                    <option value="small">Small 4x4</option>
+                    <option value="medium">Medium 6x6</option>
+                    <option value="large">Large 8x8</option>
+                </select>
+                <br>
+                <h3>Players</h3>
+                <select name="players" id="players" class="formMargin">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <br>
+                <h3>Card Images</h3>
+                <select name="imageSet" id="imageSet" class="formMargin">
+                    <option value="1">Mixed Bag</option>
+                    <option value="2">Robots</option>
+                    <option value="3">Robo Heads</option>
+                    <option value="4">KITTIES!</option>
+                </select>
+                <br>
+                <input name="playButton" type="submit" id="playButton" value="Play!" class="playBtn">
+            </form>
+            <div class="centerText">
+            <button type ="button" class="centerText"><h4>How to Play</h4></button>
+        </div>
+        </div>
+        
+    </main>
+</body>
+</html>
