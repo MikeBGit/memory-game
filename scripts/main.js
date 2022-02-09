@@ -11,18 +11,19 @@
 // }
 
 // loopToMakeCards(35);
-let roboHash = "https://robohash.org/"
-let roboSize = "?size=150x140"
+let roboHash = "https://robohash.org/";
+let roboSize = "?size=150x140";
 let roboSet;
 let imgCounter = 0;
 let randomImgId;
 let idsUSed = [];
 let arrayOfNumbers = [];
+let selectedCards = [];
+let score = 0;
 
 function rng1_4(){
   return Math.floor(Math.random() * 4) + 1;
 }
-
 
 function checkIfIdUniqueAndGenerateOne(){
   randomImgId = Math.floor(Math.random() * 100) + 1;
@@ -31,7 +32,6 @@ function checkIfIdUniqueAndGenerateOne(){
   } else{
     checkIfIdUniqueAndGenerateOne();
   }
-
 }
 
 function generateRandomImageURL(){
@@ -57,7 +57,8 @@ let columns;
 
 
 function promptTable() {
-  let difficulty = prompt("Enter: 'Easy','Medium','Hard'");
+  let difficulty = "easy";
+  //prompt("Enter: 'Easy','Medium','Hard'");
   switch(difficulty.toLocaleLowerCase()) {
     case "easy":
       console.log("easy")
@@ -80,11 +81,9 @@ function promptTable() {
       columns = 8;
   }
 
-  
-
-
-
   showTable();
+  displayMsgandScoreboard();
+  addEventListeners();
 }
 
 function showTable() {
@@ -97,7 +96,7 @@ function showTable() {
 
 
   // make an array of <spans> with URL + IDs
-  let object = {}
+  let object = {};
 
   function makeObjectToShuffle(){
     totalCards = rows * columns;
@@ -173,6 +172,43 @@ function showTable() {
   }
  
 }
+
+function displayMsgandScoreboard() {
+  $("body").prepend($("<div id=\"intro\"><p id=\"msg\"></p><p id=\"scoreBoard\"></p></div><br>"))
+  $("#msg").text("Choose a pair of similar cards");
+}
+
+function flipCard() {
+
+  if (selectedCards.push(this) == 2) {
+    if (selectedCards[0].style.backgroundImage == selectedCards[1].style.backgroundImage) {
+      console.log("CONGRATS!!! You fliped similar cards");
+      $("#scoreBoard").text(++score);
+      $(selectedCards[0]).off("click");
+      $(selectedCards[1]).off("click");
+      // TODO disable both image displays
+    }
+    else {
+      console.log("Fliped cards are not similar. Try again!!!");
+      // TODO flip back cards
+    }
+    selectedCards = [];
+  }
+  else {
+    $("#msg").text("Select a 2nd card");
+    // TODO keep card fliped till the second card is also fliped
+  }
+  if (score == arrayOfNumbers.length / 2) {
+    console.log("GAME OVER! YOU WON !");
+    // TODO GAME OVER
+  }
+}
+
+function addEventListeners() {
+  $("p span").on("click", flipCard);
+}
+
+
 
 promptTable();
 
