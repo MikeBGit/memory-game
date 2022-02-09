@@ -12,7 +12,7 @@
 
 // loopToMakeCards(35);
 let roboHash = "https://robohash.org/";
-let roboSize = "?size=150x140";
+let roboSize = "?size=140x150";
 let roboSet;
 let imgCounter = 0;
 let randomImgId;
@@ -57,7 +57,7 @@ let columns;
 
 
 function promptTable() {
-  let difficulty = "easy";
+  let difficulty = "hard";
   //prompt("Enter: 'Easy','Medium','Hard'");
   switch(difficulty.toLocaleLowerCase()) {
     case "easy":
@@ -90,8 +90,6 @@ function showTable() {
   let myBody = document.getElementsByTagName("body")[0];
   myBody.innerHTML = " ";
   myBody.style.background = "#C1B283";
-  myBody.style.marginTop = "100px";
-  myBody.style.marginLeft = "100px";
   let container = document.createElement("div");
 
 
@@ -138,6 +136,7 @@ function showTable() {
 
   for (i = 0; i < rows; i++) {
     let newParagraph = document.createElement("p");
+    
     for (j = 0; j < columns; j++) {
       // element creation
 
