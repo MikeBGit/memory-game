@@ -115,12 +115,7 @@ function showTable() {
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-  
-      // swap elements array[i] and array[j]
-      // we use "destructuring assignment" syntax to achieve that
-      // you'll find more details about that syntax in later chapters
-      // same can be written as:
-      // let t = array[i]; array[i] = array[j]; array[j] = t
+
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
@@ -145,17 +140,26 @@ function showTable() {
     let newParagraph = document.createElement("p");
     for (j = 0; j < columns; j++) {
       // element creation
+
       let newSpan = document.createElement("span");
 
+      newSpan.className = "container";
+
       
-      newSpan.style.backgroundImage = `url(${object[arrayOfNumbers[arrayOfNumberCount]].url})`
+      newSpan.innerHTML = 
+        `
+          <div class="card" onclick="flip(event)">
+            <div class="front"></div>
+            <div class="back" style="background-image: url(${object[arrayOfNumbers[arrayOfNumberCount]].url})"></div>
+          </div>
+        `;
       newSpan.id = `${object[arrayOfNumbers[arrayOfNumberCount]].id}`;
      
       // Span Css
       newSpan.style.display = "inline-block";
-      newSpan.style.minWidth = "150px";
-      newSpan.style.minHeight = "130px";
-      newSpan.style.border = "1px solid black";
+      newSpan.style.minWidth = "140px";
+      newSpan.style.minHeight = "150px";
+      // newSpan.style.border = "1px solid black";
       newSpan.style.textAlign = "center";
       newSpan.style.paddingTop = "10px";
       
@@ -208,8 +212,22 @@ function addEventListeners() {
   $("p span").on("click", flipCard);
 }
 
-
-
 promptTable();
+
+
+function flip(event){
+  var element = event.currentTarget;
+  if (element.className === "card") {
+  if(element.style.transform == "rotateY(180deg)") {
+  element.style.transform = "rotateY(0deg)";
+  }
+  else {
+  element.style.transform = "rotateY(180deg)";
+  }
+}
+};
+
+
+
 
 
