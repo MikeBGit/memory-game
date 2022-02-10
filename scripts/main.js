@@ -44,7 +44,8 @@ let columns;
 
 
 function promptTable() {
-  let difficulty = "hard";
+ 
+  let difficulty = "easy";
   //prompt("Enter: 'Easy','Medium','Hard'");
   switch(difficulty.toLocaleLowerCase()) {
     case "easy":
@@ -160,7 +161,6 @@ function showTable() {
       arrayOfNumberCount++
     }
   }
- 
 }
 
 function displayMsgandScoreboard() {
@@ -168,41 +168,93 @@ function displayMsgandScoreboard() {
   $("#msg").text("Choose a pair of similar cards");
 }
 
+
+
 function flipCard() {
 
   if (selectedCards.push(this) == 2) {
-    if (selectedCards[0].style.backgroundImage == selectedCards[1].style.backgroundImage) {
+
+    console.log("selected", selectedCards)
+
+    if ($(selectedCards[0]).find('.back')[0].style.backgroundImage == $(selectedCards[1]).find('.back')[0].style.backgroundImage) {
+
       console.log("CONGRATS!!! You fliped similar cards");
-      $("#scoreBoard").text(++score);
+
+      $("#scoreBoard").text("Score: "+(++score));
+
       $(selectedCards[0]).off("click");
+      $(selectedCards[0]).attr("onclick", "");
+      
+
       $(selectedCards[1]).off("click");
+      $(selectedCards[1]).attr("onclick", "");
+
+      // Todo Give slight Delay , cause you find it and instantly it goes to checkmark?
+      $(selectedCards[0]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
+      $(selectedCards[1]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
+      selectedCards = [];
+
       // TODO disable both image displays
+
     }
+
     else {
+      $( document.body ).css( 'pointer-events', 'none' );
+      
+
       console.log("Fliped cards are not similar. Try again!!!");
+
       // TODO flip back cards
+
+      setTimeout(myGreeting, 1500);
+      function myGreeting(){
+        console.log(selectedCards[0].style.transform = "rotateY(0deg)")
+        console.log(selectedCards[1].style.transform = "rotateY(0deg)")
+        // TODO DISABLE ALL INPUTS WHILE THIS GOING ON
+        console.log("All the cards?", $("span").find("card"))
+        selectedCards = [];
+        $( document.body ).css( 'pointer-events', 'auto' );
+      }
+      
+      
     }
-    selectedCards = [];
+
+    
+
   }
+
   else {
+
     $("#msg").text("Select a 2nd card");
+
     // TODO keep card fliped till the second card is also fliped
+
   }
+
   if (score == arrayOfNumbers.length / 2) {
+
     console.log("GAME OVER! YOU WON !");
+
     // TODO GAME OVER
+
   }
+
 }
 
 function addEventListeners() {
-  $("p span").on("click", flipCard);
+
+  $('.card').on("click", flipCard);
+
 }
+
 
 promptTable();
 
 
 function flip(event){
   var element = event.currentTarget;
+  console.log("flipped", element)
+  console.log("selected2", selectedCards)
   if (element.className === "card") {
   if(element.style.transform == "rotateY(180deg)") {
   element.style.transform = "rotateY(0deg)";
@@ -212,8 +264,3 @@ function flip(event){
   }
 }
 };
-
-
-
-
-
