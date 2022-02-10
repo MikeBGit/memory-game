@@ -100,10 +100,12 @@ h1, h2 {
 
 #intro {
     font-family: 'Urbane Rounded Light', sans-serif;
+    text-shadow: 1px 1px dimgrey
 }
 
 h1 {
     color: cadetblue;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 h3 {
@@ -143,8 +145,9 @@ p, li, #btnCloseInstructions {
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 3em;
-    background-color: rosybrown;
+    /* background-color: rosybrown; */
     border-radius: 25px;
+    background: repeating-radial-gradient(closest-side at center, #909090 15%, rosybrown 40%)
 }
 h2, h3{
     color: #004b49;
