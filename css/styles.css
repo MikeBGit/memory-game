@@ -1,4 +1,56 @@
-body{
+@font-face {
+    font-family: 'Urbane Rounded Med';
+    src: url('../font/UrbaneRounded-Medium.eot');
+    src: local('Urbane Rounded Medium'), local('UrbaneRounded-Medium'),
+        url('../font/UrbaneRounded-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../font/UrbaneRounded-Medium.woff2') format('woff2'),
+        url('../font/UrbaneRounded-Medium.woff') format('woff'),
+        url('../font/UrbaneRounded-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Urbane Rounded Heavy';
+    src: url('../font/UrbaneRounded-Heavy.eot');
+    src: local('Urbane Rounded Heavy'), local('UrbaneRounded-Heavy'),
+        url('../font/UrbaneRounded-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('../font/UrbaneRounded-Heavy.woff2') format('woff2'),
+        url('../font/UrbaneRounded-Heavy.woff') format('woff'),
+        url('../font/UrbaneRounded-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Urbane Rounded Demi';
+    src: url('../font/UrbaneRounded-DemiBold.eot');
+    src: local('Urbane Rounded Demi Bold'), local('UrbaneRounded-DemiBold'),
+        url('../font/UrbaneRounded-DemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../font/UrbaneRounded-DemiBold.woff2') format('woff2'),
+        url('../font/UrbaneRounded-DemiBold.woff') format('woff'),
+        url('../font/UrbaneRounded-DemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Urbane Rounded Light';
+    src: url('../font/UrbaneRounded-Light.eot');
+    src: local('Urbane Rounded Light'), local('UrbaneRounded-Light'),
+        url('../font/UrbaneRounded-Light.eot?#iefix') format('embedded-opentype'),
+        url('../font/UrbaneRounded-Light.woff2') format('woff2'),
+        url('../font/UrbaneRounded-Light.woff') format('woff'),
+        url('../font/UrbaneRounded-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* body{
     display: flex;
     justify-content: center;
     margin-top: 3%;
@@ -12,11 +64,119 @@ body{
     width:70vw;
     
 }
+ */
+
+.card{
+   
+    border: 1px solid black;
+    width: 140px;
+    height: 150px;
+   
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 0.90); 
+    display: none;
+    overflow-x: hidden; 
+    transition: .5s; 
+}
+
+
+
+#conclusion {
+    height: 0%;
+    transition: 1.5s; 
+    display: block;
+}
+
+h1, h2 {
+    font-family: 'Urbane Rounded Heavy', sans-serif;
+}
+
+#intro {
+    font-family: 'Urbane Rounded Light', sans-serif;
+    text-shadow: 1px 1px dimgrey;
+}
+
+h1 {
+    color: cadetblue;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+h3 {
+    font-family: 'Urbane Rounded Demi', sans-serif;
+}
+
+p, li, #btnCloseInstructions {
+    font-family: 'Urbane Rounded Med', sans-serif;
+    color: white;
+}
+
+
+.mainContainer{
+    display: flex;
+   
+    width:70vw;
+    
+}
 
 .card{
     margin: .5em;
     border: 1px solid black;
-    width: 5em;
-    height: 6em;
+ 
    
 }
+.homeBackground{
+    background-image: url(../images/wallpaper.png);
+    background-size: auto;
+    padding-top: 3em;
+}
+.menu{
+    max-width: 50%;
+    max-height: 80%;
+    margin: auto;
+    /* border: 6px solid orangered; */
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 3em;
+    /* background-color: rosybrown; */
+    border-radius: 25px;
+    background: repeating-radial-gradient(closest-side at center, #909090 15%, rosybrown 40%);
+    display: block;
+}
+h2, h3{
+    color: #004b49;
+    text-align: center;
+}
+.centerText{
+    text-align: center;
+    padding-top: 0.5em;
+}
+.formMargin{
+    margin-bottom: 0.5em;
+    width: 30%;
+    display: inline-block;
+}
+option{
+    text-align: center;
+}
+#playButton, #btnShowInstructions{
+    height: 3em;
+    min-width: 150px;
+    width:40%;
+    font-family: 'Urbane Rounded Med', sans-serif;
+    color: white;
+}
+
+p{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+  
+} 
