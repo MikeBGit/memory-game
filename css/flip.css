@@ -50,6 +50,7 @@
     border: 2px solid black;
     /* background: url("http://placehold.it/100x100"); */
     transform: rotateY(180deg);
+    background: #5C5C5C;
   }
   
   .back:hover {

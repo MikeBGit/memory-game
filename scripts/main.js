@@ -43,7 +43,7 @@ let columns;
 
 function promptTable() {
  
-  let difficulty = "easy";
+  let difficulty = "hard";
   //prompt("Enter: 'Easy','Medium','Hard'");
   switch(difficulty.toLocaleLowerCase()) {
     case "easy":
@@ -70,6 +70,9 @@ function promptTable() {
   showTable();
   displayMsgandScoreboard();
   addEventListeners();
+  
+  flipAllCardsOpen();
+  
 }
 
 function showTable() {
@@ -158,6 +161,7 @@ function showTable() {
       arrayOfNumberCount++
     }
   }
+  setTimeout(flipAllCardsClosed,10000);
 }
 
 function displayMsgandScoreboard() {
@@ -239,7 +243,7 @@ function addEventListeners() {
   $('.card').on("click", flipCard);
 
 }
-promptTable();
+// promptTable();
 
 function flip(event){
   var element = event.currentTarget;
@@ -253,5 +257,38 @@ function flip(event){
   }
 }
 };
+
+
+function flipAllCardsOpen(){
+  let allCards = $('span').find('.card');
+  console.log(allCards)
+  let cardCounter = 0;
+  function recursiveCallToFlip(){
+    if(cardCounter<allCards.length){
+      console.log("loop")
+      allCards[cardCounter].style.transform = "rotateY(180deg)"
+      setTimeout(recursiveCallToFlip, 50)
+      cardCounter++
+    }
+  }
+  recursiveCallToFlip();
+
+}
+
+function flipAllCardsClosed(){
+  let allCards = $('span').find('.card');
+  console.log(allCards)
+  let cardCounter = 0;
+  function recursiveCallToFlipClosed(){
+    if(cardCounter<allCards.length){
+      console.log("loop")
+      allCards[cardCounter].style.transform = "rotateY(0deg)"
+      setTimeout(recursiveCallToFlipClosed, 125)
+      cardCounter++
+    }
+  }
+  recursiveCallToFlipClosed();
+
+}
 
 
