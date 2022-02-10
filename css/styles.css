@@ -37,6 +37,19 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Urbane Rounded Light';
+    src: url('../font/UrbaneRounded-Light.eot');
+    src: local('Urbane Rounded Light'), local('UrbaneRounded-Light'),
+        url('../font/UrbaneRounded-Light.eot?#iefix') format('embedded-opentype'),
+        url('../font/UrbaneRounded-Light.woff2') format('woff2'),
+        url('../font/UrbaneRounded-Light.woff') format('woff'),
+        url('../font/UrbaneRounded-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* body{
     display: flex;
     justify-content: center;
@@ -69,10 +82,11 @@
     top: 0;
     background-color: rgba(0,0,0, 0.85); 
     display: none;
-    color: white;
     overflow-x: hidden; 
     transition: .5s; 
 }
+
+
 
 #conclusion {
     height: 0%;
@@ -84,16 +98,21 @@ h1, h2 {
     font-family: 'Urbane Rounded Heavy', sans-serif;
 }
 
+#intro {
+    font-family: 'Urbane Rounded Light', sans-serif;
+}
+
 h1 {
-    color: tomato;
+    color: cadetblue;
 }
 
 h3 {
     font-family: 'Urbane Rounded Demi', sans-serif;
 }
 
-p, li, #btnCloseInstructions, select {
+p, li, #btnCloseInstructions {
     font-family: 'Urbane Rounded Med', sans-serif;
+    color: white;
 }
 
 
@@ -116,19 +135,19 @@ p, li, #btnCloseInstructions, select {
     background-size: auto;
     padding-top: 3em;
 }
-.contentBox{
-    max-width: 40%;
+.menu{
+    max-width: 50%;
     max-height: 80%;
     margin: auto;
     /* border: 6px solid orangered; */
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 3em;
-    background-color: coral;
+    background-color: rosybrown;
     border-radius: 25px;
 }
 h2, h3{
-    color: white;
+    color: #004b49;
     text-align: center;
 }
 .centerText{
@@ -137,8 +156,7 @@ h2, h3{
 }
 .formMargin{
     margin-bottom: 0.5em;
-    min-width: 150px;
-    width: 50%;
+    width: 30%;
     display: inline-block;
 }
 option{
@@ -147,7 +165,7 @@ option{
 #playButton, #btnShowInstructions{
     height: 3em;
     min-width: 150px;
-    width:50%;
+    width:40%;
     font-family: 'Urbane Rounded Med', sans-serif;
     color: white;
 }

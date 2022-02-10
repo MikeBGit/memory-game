@@ -1,4 +1,4 @@
-window.addEventListener('load', displayMenu);
+// window.addEventListener('load', displayMenu);
 // function createCard(){ 
 //     $("main").append(`<div class="card"></div>`)
 // }
@@ -80,11 +80,6 @@ function promptTable() {
       rows = 4;
       columns = 8;
   }
-
-  
-
-
-
   showTable();
 }
 
@@ -171,33 +166,32 @@ function showTable() {
       arrayOfNumberCount++
     }
   }
- 
 }
 
 
 
-
+function displayMenu() {
+  document.getElementById("conclusion").style.height = "0%";
+  $("menu").show();
+}
 
 // promptTable();
 
-function displayMenu() {
-  $(".container").html('<div class="contentBox"> <h2><br>---------- </h2> <h3>Difficulty</h3> <form class="centerText"> <select name="difficulty" id="difficulty" class="formMargin"> <option value="easy">Easy</option> <option value="medium">Medium</option> <option value="hard">Hard</option> <option value="haveFunGuessing">Have Fun Guessing</option> </select> <br><h3>Game Size</h3> <select name="size" id="size" class="formMargin"> <option value="small">Small 4x4</option> <option value="medium">Medium 6x6</option> <option value="large">Large 8x8</option> </select> <br><h3>Players</h3> <select name="players" id="players" class="formMargin"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select> <br><h3>Card Images</h3> <select name="imageSet" id="imageSet" class="formMargin"> <option value="1">Mixed Bag</option> <option value="2">Robots</option> <option value="3">Robo Heads</option> <option value="4">KITTIES!</option> </select> <br><input name="playButton" type="button" class="startGame btn btn-primary mt-3" id="playButton" value="Play!" class="btn btn-primary playBtn mt-4"> </form> <div class="centerText"> <button type="button" id="btnShowInstructions" class="btn btn-secondary">How to Play</button></div><div class="overlay" id="instructions"> <div class="col-4 offset-4 pt-5"> <h2 class="text-center pt-5 mt-5 display-2">How to Play</h2> <h3 class="pt-3">To Win the Game</h3> <p class="pt-4">This is a dangerously-fun game to test your memory-- you have limited attempts to match all the cards face.</p><h3 class="pt-3">Levels of Difficulty</h3> <ul class="pt-4"> <li>Easy - Find 8 pairs</li><li>Medium - Find 10 pairs</li><li>Hard - Find 11 pairs</li></ul> <div class="text-center pt-3"> <button id="btnCloseInstructions" class="btn btn-primary">Back to Menu</button> </div></div></div><div class="overlay text-center" id="conclusion"> <h2 id="result" class="display-2 pt-5 mt-5">🎊 Good memory! 🎊</h2> <p id="message" class="pt-2" >You\'ve successfully matched all the pairs with X tries left.</p><h3 class="pt-4">Do you wish to play again?</h3> <div class="text-center pt-3"> <button class="btn btn-primary startGame btn-lg mx-2">✔</button> <button class="btn btn-danger displayMenu btn-lg mx-2">🙅</button> </div></div>')
 
-  $("#btnShowInstructions").click(showInstructions);
-  $("#btnCloseInstructions").click(closeInstructions);
-  $(".displayMenu").click(displayMenu)
 
-  $("h1").click(showConclusion)
 
-  $(".startGame").click(function(){
-    difficulty = $("#difficulty").val();
-    promptTable();
-  });
+
+
+
+
+function showWin() {
+  $("#result").text("🎊 Good memory! 🎊");
+  $("#message").text("You've successfully matched all the pairs with X tries left.");
 }
 
-function showWin(){
-  $("result").text = "🎊 Good memory! 🎊";
-  $("message").text = "You've successfully matched all the pairs with X tries left."
+function showLose() {
+  $("#result").text("💀 Game over! 💀");
+  $("#message").text(`Whoops, you ran out of attempts. You managed to find x pairs out of total pairs.`);
 }
 
 function showInstructions() {
@@ -214,6 +208,32 @@ function showConclusion() {
   console.log("h1")
 }
 
+showWin();
 // event listeners
 
+$("#btnShowInstructions").click(showInstructions);
+$("#btnCloseInstructions").click(closeInstructions);
+$(".displayMenu").click(displayMenu)
+$("h1").click(showConclusion)
 
+$(".startGame").click(function(){
+  $("menu").hide();
+  difficulty = $("#difficulty").val();
+  promptTable();
+});
+
+
+// Old code to build homepage
+// function displayMenu() {
+//   // $(".container").html('<div class="contentBox"> <h2><br>---------- </h2> <h3>Difficulty</h3> <form class="centerText"> <select name="difficulty" id="difficulty" class="formMargin"> <option value="easy">Easy</option> <option value="medium">Medium</option> <option value="hard">Hard</option> <option value="haveFunGuessing">Have Fun Guessing</option> </select> <br><h3>Game Size</h3> <select name="size" id="size" class="formMargin"> <option value="small">Small 4x4</option> <option value="medium">Medium 6x6</option> <option value="large">Large 8x8</option> </select> <br><h3>Players</h3> <select name="players" id="players" class="formMargin"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select> <br><h3>Card Images</h3> <select name="imageSet" id="imageSet" class="formMargin"> <option value="1">Mixed Bag</option> <option value="2">Robots</option> <option value="3">Robo Heads</option> <option value="4">KITTIES!</option> </select> <br><input name="playButton" type="button" class="startGame btn btn-primary mt-3" id="playButton" value="Play!" class="btn btn-primary playBtn mt-4"> </form> <div class="centerText"> <button type="button" id="btnShowInstructions" class="btn btn-secondary">How to Play</button></div><div class="overlay" id="instructions"> <div class="col-4 offset-4 pt-5"> <h2 class="text-center pt-5 mt-5 display-2">How to Play</h2> <h3 class="pt-3">To Win the Game</h3> <p class="pt-4">This is a dangerously-fun game to test your memory-- you have limited attempts to match all the cards face.</p><h3 class="pt-3">Levels of Difficulty</h3> <ul class="pt-4"> <li>Easy - Find 8 pairs</li><li>Medium - Find 10 pairs</li><li>Hard - Find 11 pairs</li></ul> <div class="text-center pt-3"> <button id="btnCloseInstructions" class="btn btn-primary">Back to Menu</button> </div></div></div><div class="overlay text-center" id="conclusion"> <h2 id="result" class="display-2 pt-5 mt-5">🎊 Good memory! 🎊</h2> <p id="message" class="pt-2" >You\'ve successfully matched all the pairs with X tries left.</p><h3 class="pt-4">Do you wish to play again?</h3> <div class="text-center pt-3"> <button class="btn btn-primary startGame btn-lg mx-2">✔</button> <button class="btn btn-danger displayMenu btn-lg mx-2">🙅</button> </div></div>')
+
+//   $("#btnShowInstructions").click(showInstructions);
+//   $("#btnCloseInstructions").click(closeInstructions);
+//   $(".displayMenu").click(displayMenu)
+//   $("h1").click(showConclusion)
+
+//   $(".startGame").click(function(){
+//     difficulty = $("#difficulty").val();
+//     promptTable();
+//   });
+// }
