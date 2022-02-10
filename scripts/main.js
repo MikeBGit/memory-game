@@ -79,7 +79,7 @@ function promptTable() {
 
   showTable();
   addEventListeners();
-
+  $( document.body ).css( 'pointer-events', 'none' );
   flipAllCardsOpen();
 
 }
@@ -333,6 +333,11 @@ function flipAllCardsOpen(){
       cardCounter++
     }
   }
+  setTimeout(waitToRegainClickFunctions, delay + 4000)
+  function waitToRegainClickFunctions(){
+    $( document.body ).css( 'pointer-events', '' );
+  }
+
   recursiveCallToFlip();
 
 }
