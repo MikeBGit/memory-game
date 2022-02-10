@@ -41,8 +41,6 @@ function generateRandomImageURL(){
 let rows;
 let columns;
 
-
-
 function promptTable() {
  
   let difficulty = "easy";
@@ -195,7 +193,7 @@ function flipCard() {
         $(selectedCards[0]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
         $(selectedCards[1]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
         selectedCards = [];
-        $( document.body ).css( 'pointer-events', 'auto' );
+        $( document.body ).css( 'pointer-events', '' );
       }
     }
 
@@ -211,7 +209,7 @@ function flipCard() {
         
         for(let card of selectedCards){
           
-          card.style.pointerEvents = "auto"
+          card.style.pointerEvents = ""
         }
         selectedCards = [];
         $( document.body ).css( 'pointer-events', 'auto' );
@@ -235,9 +233,7 @@ function flipCard() {
     console.log("GAME OVER! YOU WON !");
 
     // TODO GAME OVER
-    
-  }
-  
+  } 
 }
 
 function addEventListeners() {
