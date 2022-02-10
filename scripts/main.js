@@ -11,18 +11,19 @@
 // }
 
 // loopToMakeCards(35);
-let roboHash = "https://robohash.org/"
-let roboSize = "?size=150x140"
+let roboHash = "https://robohash.org/";
+let roboSize = "?size=140x150";
 let roboSet;
 let imgCounter = 0;
 let randomImgId;
 let idsUSed = [];
 let arrayOfNumbers = [];
+let selectedCards = [];
+let score = 0;
 
 function rng1_4(){
   return Math.floor(Math.random() * 4) + 1;
 }
-
 
 function checkIfIdUniqueAndGenerateOne(){
   randomImgId = Math.floor(Math.random() * 100) + 1;
@@ -31,7 +32,6 @@ function checkIfIdUniqueAndGenerateOne(){
   } else{
     checkIfIdUniqueAndGenerateOne();
   }
-
 }
 
 function generateRandomImageURL(){
@@ -51,15 +51,16 @@ function generateRandomImageURL(){
   return `${roboHash}${roboSet}${randomImgId}${roboSize}`
 }
 
-let difficulty;
 let rows;
 let columns;
 
 
 
 function promptTable() {
-  
-  switch(difficulty) {
+ 
+  let difficulty = "easy";
+  //prompt("Enter: 'Easy','Medium','Hard'");
+  switch(difficulty.toLocaleLowerCase()) {
     case "easy":
       console.log("easy")
       rows = 4;
@@ -80,19 +81,21 @@ function promptTable() {
       rows = 4;
       columns = 8;
   }
+
   showTable();
+  // displayMsgandScoreboard();
+  addEventListeners();
 }
 
 function showTable() {
   let myBody = document.getElementsByTagName("main")[0];
   myBody.innerHTML = " ";
   myBody.style.background = "#C1B283";
-  myBody.style.marginLeft = "100px";
   let container = document.createElement("div");
 
 
   // make an array of <spans> with URL + IDs
-  let object = {}
+  let object = {};
 
   function makeObjectToShuffle(){
     totalCards = rows * columns;
@@ -111,12 +114,7 @@ function showTable() {
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-  
-      // swap elements array[i] and array[j]
-      // we use "destructuring assignment" syntax to achieve that
-      // you'll find more details about that syntax in later chapters
-      // same can be written as:
-      // let t = array[i]; array[i] = array[j]; array[j] = t
+
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
@@ -131,27 +129,36 @@ function showTable() {
 
   makeObjectToShuffle();
   shuffle(arrayOfNumbers);
-  console.log(arrayOfNumbers);
-  console.log(object);
+  
   let arrayOfNumberCount = 0;
 
   // Loop that styles and appends each element to the dom to form the table
 
   for (i = 0; i < rows; i++) {
     let newParagraph = document.createElement("p");
+    
     for (j = 0; j < columns; j++) {
       // element creation
+
       let newSpan = document.createElement("span");
 
+      newSpan.className = "container";
+
       
-      newSpan.style.backgroundImage = `url(${object[arrayOfNumbers[arrayOfNumberCount]].url})`
+      newSpan.innerHTML = 
+        `
+          <div class="card" onclick="flip(event)">
+            <div class="front"></div>
+            <div class="back" style="background-image: url(${object[arrayOfNumbers[arrayOfNumberCount]].url})"></div>
+          </div>
+        `;
       newSpan.id = `${object[arrayOfNumbers[arrayOfNumberCount]].id}`;
      
       // Span Css
       newSpan.style.display = "inline-block";
-      newSpan.style.minWidth = "150px";
-      newSpan.style.minHeight = "130px";
-      newSpan.style.border = "1px solid black";
+      newSpan.style.minWidth = "140px";
+      newSpan.style.minHeight = "150px";
+      // newSpan.style.border = "1px solid black";
       newSpan.style.textAlign = "center";
       newSpan.style.paddingTop = "10px";
       
@@ -167,6 +174,78 @@ function showTable() {
     }
   }
 }
+
+function flipCard() {
+
+  $( this ).css( 'pointer-events', 'none' );
+
+  if (selectedCards.push(this) == 2) {
+
+    if ($(selectedCards[0]).find('.back')[0].style.backgroundImage == $(selectedCards[1]).find('.back')[0].style.backgroundImage ) {
+
+      console.log("CONGRATS!!! You fliped similar cards");
+
+      $("#scoreBoard").text("Score: "+(++score));
+
+      $(selectedCards[0]).off("click");
+      $(selectedCards[0]).attr("onclick", "");
+      
+
+      $(selectedCards[1]).off("click");
+      $(selectedCards[1]).attr("onclick", "");
+
+      // Todo Give slight Delay , cause you find it and instantly it goes to checkmark?
+      setTimeout(waitABit, 1000);
+      $( document.body ).css( 'pointer-events', 'none' );
+      function waitABit() {
+        $(selectedCards[0]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
+        $(selectedCards[1]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
+        selectedCards = [];
+        $( document.body ).css( 'pointer-events', 'auto' );
+      }
+    }
+
+    else {
+      //  DISABLE ALL INPUTS WHILE THIS GOING ON
+      $( document.body ).css( 'pointer-events', 'none' );
+      console.log("Fliped cards are not similar. Try again!!!");
+
+      setTimeout(flipBack, 1500);
+      function flipBack(){
+        selectedCards[0].style.transform = "rotateY(0deg)";
+        selectedCards[1].style.transform = "rotateY(0deg)";
+        
+        for(let card of selectedCards){
+          
+          card.style.pointerEvents = "auto"
+        }
+        selectedCards = [];
+        $( document.body ).css( 'pointer-events', 'auto' );
+       
+      }
+      
+    }
+
+  }
+
+  else {
+
+    $("#msg").text("Select a 2nd card");
+
+    // TODO keep card fliped till the second card is also fliped
+
+  }
+
+  if (score == arrayOfNumbers.length / 2) {
+
+    console.log("GAME OVER! YOU WON !");
+
+    // TODO GAME OVER
+    
+  }
+  
+}
+
 
 
 
@@ -210,6 +289,23 @@ function showConclusion() {
 
 showWin();
 // event listeners
+
+function addEventListeners() {
+  $('.card').on("click", flipCard);
+}
+
+function flip(event){
+  var element = event.currentTarget;
+  
+  if (element.className === "card") {
+  if(element.style.transform == "rotateY(180deg)") {
+  element.style.transform = "rotateY(0deg)";
+  }
+  else {
+  element.style.transform = "rotateY(180deg)";
+  }
+}
+};
 
 $("#btnShowInstructions").click(showInstructions);
 $("#btnCloseInstructions").click(closeInstructions);

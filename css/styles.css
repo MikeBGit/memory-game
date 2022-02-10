@@ -64,14 +64,15 @@
     width:70vw;
     
 }
+ */
 
 .card{
-    margin: .5em;
-    border: 1px solid black;
-    width: 5em;
-    height: 6em;
    
-} */
+    border: 1px solid black;
+    width: 140px;
+    height: 150px;
+   
+}
 
 .overlay {
     height: 100%;
@@ -112,7 +113,7 @@ h3 {
     font-family: 'Urbane Rounded Demi', sans-serif;
 }
 
-p, li, #btnCloseInstructions {
+li, #btnCloseInstructions {
     font-family: 'Urbane Rounded Med', sans-serif;
     color: white;
 }
@@ -172,3 +173,10 @@ option{
     font-family: 'Urbane Rounded Med', sans-serif;
     color: white;
 }
+
+p{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+  
+} 
