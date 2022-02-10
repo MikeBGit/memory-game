@@ -60,16 +60,24 @@
    
 } */
 
-#instructions {
+.overlay {
     height: 100%;
     width: 100%;
     position: fixed;
     z-index: 1; 
     left: 0;
     top: 0;
-    background-color: rgba(0,0,0, 0.8); /* Black w/opacity */
+    background-color: rgba(0,0,0, 0.85); 
     display: none;
     color: white;
+    overflow-x: hidden; 
+    transition: .5s; 
+}
+
+#conclusion {
+    height: 0%;
+    transition: 1.5s; 
+    display: block;
 }
 
 h1, h2 {
@@ -136,7 +144,7 @@ h2, h3{
 option{
     text-align: center;
 }
-.playBtn, #btnShowInstructions{
+#playButton, #btnShowInstructions{
     height: 3em;
     min-width: 150px;
     width:50%;
