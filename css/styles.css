@@ -121,7 +121,7 @@ li, #btnCloseInstructions {
 
 .mainContainer{
     display: flex;
-    flex-wrap: wrap;
+   
     width:70vw;
     
 }
@@ -129,8 +129,7 @@ li, #btnCloseInstructions {
 .card{
     margin: .5em;
     border: 1px solid black;
-    width: 5em;
-    height: 6em;
+ 
    
 }
 .homeBackground{
