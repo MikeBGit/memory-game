@@ -194,17 +194,13 @@ function flipCard() {
       $(selectedCards[1]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
       selectedCards = [];
 
-      // TODO disable both image displays
 
     }
 
     else {
       $( document.body ).css( 'pointer-events', 'none' );
-      
-
+    
       console.log("Fliped cards are not similar. Try again!!!");
-
-      // TODO flip back cards
 
       setTimeout(myGreeting, 1500);
       function myGreeting(){
@@ -216,10 +212,7 @@ function flipCard() {
         $( document.body ).css( 'pointer-events', 'auto' );
       }
       
-      
     }
-
-    
 
   }
 
