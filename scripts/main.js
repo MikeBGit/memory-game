@@ -333,10 +333,7 @@ function flipAllCardsOpen(){
       cardCounter++
     }
   }
-  setTimeout(waitToRegainClickFunctions, delay + 4000)
-  function waitToRegainClickFunctions(){
-    $( document.body ).css( 'pointer-events', '' );
-  }
+ 
 
   recursiveCallToFlip();
 
@@ -348,9 +345,14 @@ function flipAllCardsClosed(){
   let cardCounter = 0;
   function recursiveCallToFlipClosed(){
     if(cardCounter<allCards.length){
+      if(cardCounter==allCards.length-1){
+        console.log('last vard')
+        $( document.body ).css( 'pointer-events', '' );
+      } 
       console.log("loop")
       allCards[cardCounter].style.transform = "rotateY(0deg)"
       setTimeout(recursiveCallToFlipClosed, 125)
+
       cardCounter++
     }
   }
