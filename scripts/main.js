@@ -172,11 +172,15 @@ function displayMsgandScoreboard() {
 
 function flipCard() {
 
+   
+  $( this ).css( 'pointer-events', 'none' );
+
   if (selectedCards.push(this) == 2) {
 
-    console.log("selected", selectedCards)
+    console.log("selected", selectedCards);
+    
 
-    if ($(selectedCards[0]).find('.back')[0].style.backgroundImage == $(selectedCards[1]).find('.back')[0].style.backgroundImage) {
+    if ($(selectedCards[0]).find('.back')[0].style.backgroundImage == $(selectedCards[1]).find('.back')[0].style.backgroundImage ) {
 
       console.log("CONGRATS!!! You fliped similar cards");
 
@@ -202,14 +206,19 @@ function flipCard() {
     
       console.log("Fliped cards are not similar. Try again!!!");
 
-      setTimeout(myGreeting, 1500);
-      function myGreeting(){
+      setTimeout(flipBack, 1500);
+      function flipBack(){
         console.log(selectedCards[0].style.transform = "rotateY(0deg)")
         console.log(selectedCards[1].style.transform = "rotateY(0deg)")
         // TODO DISABLE ALL INPUTS WHILE THIS GOING ON
         console.log("All the cards?", $("span").find("card"))
+        for(let card of selectedCards){
+          console.log('card', card)
+          card.style.pointerEvents = "auto"
+        }
         selectedCards = [];
         $( document.body ).css( 'pointer-events', 'auto' );
+       
       }
       
     }
@@ -229,9 +238,9 @@ function flipCard() {
     console.log("GAME OVER! YOU WON !");
 
     // TODO GAME OVER
-
+    
   }
-
+  
 }
 
 function addEventListeners() {
