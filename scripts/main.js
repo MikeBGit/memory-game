@@ -116,8 +116,7 @@ function showTable() {
 
   makeObjectToShuffle();
   shuffle(arrayOfNumbers);
-  console.log(arrayOfNumbers);
-  console.log(object);
+  
   let arrayOfNumberCount = 0;
 
   // Loop that styles and appends each element to the dom to form the table
@@ -172,13 +171,9 @@ function displayMsgandScoreboard() {
 
 function flipCard() {
 
-   
   $( this ).css( 'pointer-events', 'none' );
 
   if (selectedCards.push(this) == 2) {
-
-    console.log("selected", selectedCards);
-    
 
     if ($(selectedCards[0]).find('.back')[0].style.backgroundImage == $(selectedCards[1]).find('.back')[0].style.backgroundImage ) {
 
@@ -194,26 +189,28 @@ function flipCard() {
       $(selectedCards[1]).attr("onclick", "");
 
       // Todo Give slight Delay , cause you find it and instantly it goes to checkmark?
-      $(selectedCards[0]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
-      $(selectedCards[1]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
-      selectedCards = [];
-
-
+      setTimeout(waitABit, 1000);
+      $( document.body ).css( 'pointer-events', 'none' );
+      function waitABit() {
+        $(selectedCards[0]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
+        $(selectedCards[1]).find(".back")[0].style.backgroundImage = "url(images/greyCheckmark.png)"
+        selectedCards = [];
+        $( document.body ).css( 'pointer-events', 'auto' );
+      }
     }
 
     else {
+      //  DISABLE ALL INPUTS WHILE THIS GOING ON
       $( document.body ).css( 'pointer-events', 'none' );
-    
       console.log("Fliped cards are not similar. Try again!!!");
 
       setTimeout(flipBack, 1500);
       function flipBack(){
-        console.log(selectedCards[0].style.transform = "rotateY(0deg)")
-        console.log(selectedCards[1].style.transform = "rotateY(0deg)")
-        // TODO DISABLE ALL INPUTS WHILE THIS GOING ON
-        console.log("All the cards?", $("span").find("card"))
+        selectedCards[0].style.transform = "rotateY(0deg)";
+        selectedCards[1].style.transform = "rotateY(0deg)";
+        
         for(let card of selectedCards){
-          console.log('card', card)
+          
           card.style.pointerEvents = "auto"
         }
         selectedCards = [];
@@ -255,8 +252,7 @@ promptTable();
 
 function flip(event){
   var element = event.currentTarget;
-  console.log("flipped", element)
-  console.log("selected2", selectedCards)
+  
   if (element.className === "card") {
   if(element.style.transform == "rotateY(180deg)") {
   element.style.transform = "rotateY(0deg)";
