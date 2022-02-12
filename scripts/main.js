@@ -309,8 +309,6 @@ $(".startGame").click(function(){
   promptTable();
   hideConclusion();
   $("#return").show()
-
-  $("#result").text("Do you wish to return");
 });
 
 function flipAllCardsOpen(){
