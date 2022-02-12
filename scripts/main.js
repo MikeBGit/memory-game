@@ -1,3 +1,5 @@
+$("#return").hide()
+
 let roboHash = "https://robohash.org/";
 let roboSize = "?size=140x150";
 let roboSet;
@@ -234,36 +236,25 @@ function flipCard() {
   }
 
   if (numOfAttempts == 0) {
-    setLose()
+    $("#result").text("💀 Game Over! 💀");
+    $("#message").text(`Oh no, you ran out of attempts. You managed to find ${score} pair(s) out of ${arrayOfNumbers.length / 2} pairs.`);
     showConclusion();
-      // TODO GAME OVER
     }
   else {
     if (score == arrayOfNumbers.length / 2) {
-      setWin();
+      $("#result").text("🎊 Good Memory! 🎊");
+      $("#message").text(`You've successfully matched all the pairs with ${numOfAttempts} attempts remaining.`);
       showConclusion();
-  }
-    
-   
+    } 
   } 
 }
 
-// Paul's Code
 
 function displayMenu() {
   document.getElementById("conclusion").style.height = "0%";
   $(".menu").show();
   $("#gameBoard").html("");
-}
-
-function setWin() {
-  $("#result").text("🎊 Good Memory! 🎊");
-  $("#message").text(`You've successfully matched all the pairs with ${numOfAttempts} attempts remaining.`);
-}
-
-function setLose() {
-  $("#result").text("💀 Game Over! 💀");
-  $("#message").text(`Oh no, you ran out of attempts. You managed to find ${score} pair(s) out of ${arrayOfNumbers.length / 2} pairs.`);
+  $("#return").hide()
 }
 
 function showInstructions() {
@@ -284,9 +275,7 @@ function hideConclusion() {
 }
 
 function addEventListeners() {
-
   $('.card').on("click", flipCard);
-
 }
 
 function flip(event){
@@ -305,7 +294,7 @@ function flip(event){
 $("#btnShowInstructions").click(showInstructions);
 $("#btnCloseInstructions").click(closeInstructions);
 $(".displayMenu").click(displayMenu)
-$("h1").click(showConclusion)
+$("#return").click(displayMenu)
 
 $(".startGame").click(function(){
   roboSet;
@@ -319,6 +308,9 @@ $(".startGame").click(function(){
   difficulty = $("#difficulty").val();
   promptTable();
   hideConclusion();
+  $("#return").show()
+
+  $("#result").text("Do you wish to return");
 });
 
 function flipAllCardsOpen(){
